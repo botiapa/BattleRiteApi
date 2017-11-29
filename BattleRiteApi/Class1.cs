@@ -8,5 +8,6 @@ namespace BattleRiteApi
 {
     public class Class1
     {
+        string test = "hello there";
     }
 }
