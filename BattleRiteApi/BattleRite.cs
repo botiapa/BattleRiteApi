@@ -54,6 +54,13 @@ namespace BattleRiteApi
             var obj = JsonConvert.DeserializeObject<FullStatus>(jsonString);
             return obj.status;
         }
+
+        public async Task<Status.Status> GetApiStatusAsync()
+        {
+            string jsonString = await requester.GetAsync(apiStatusUrl);
+            var obj = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<FullStatus>(jsonString));
+            return obj.status;
+        }
         #endregion
 
         #region Match
@@ -65,6 +72,14 @@ namespace BattleRiteApi
             return obj;
         }
 
+        public async Task<MatchCollection> GetMatchCollectionAsync(int pageOffset = 0, int pageLimit = 5, string sort = "createdAt", string filterCreatedAtStart = "Now-28days", string filterCreatedAtEnd = "Now", string filterPlayerNames = "none", string filterPlayerIds = "none", string filterTeamNames = "none", string filterGameMode = "none")
+        {
+            string requestUrl = String.Format(matchCollectionUrl, pageOffset, pageLimit, sort, filterCreatedAtStart, filterCreatedAtEnd);
+            string jsonString = await requester.GetAsync(requestUrl);
+            var obj = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<MatchCollection>(jsonString));
+            return obj;
+        }
+
         public SingleMatch GetSingeMatch(string matchId)
         {
             string requestUrl = String.Format(singleMatchUrl, matchId);
@@ -73,8 +88,16 @@ namespace BattleRiteApi
             return obj;
         }
 
+        public async Task<SingleMatch> GetSingeMatchAsync(string matchId)
+        {
+            string requestUrl = String.Format(singleMatchUrl, matchId);
+            string jsonString = await requester.GetAsync(requestUrl);
+            var obj = await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<SingleMatch>(jsonString));
+            return obj;
+        }
+
         #endregion
 
-        
+
     }
 }

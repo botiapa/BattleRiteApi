@@ -34,6 +34,21 @@ namespace BattleRiteApi.Http
             // Return the response string
             return responseString;
         }
+
+        public async Task<string> GetAsync(string requestUrl)
+        {
+            // Create webrequest
+            HttpWebRequest webRequest = HttpWebRequest.CreateHttp(requestUrl);
+            webRequest.Headers.Add("Authorization", ApiKey);
+            webRequest.Accept = "application/vnd.api+json";
+
+            // Get stream, and read until the end
+            Stream responseStream =  (await webRequest.GetResponseAsync()).GetResponseStream();
+            StreamReader streamReader = new StreamReader(responseStream);
+            string responseString = await streamReader.ReadToEndAsync();
+            // Return the response string
+            return responseString;
+        }
         #endregion
     }
 }
