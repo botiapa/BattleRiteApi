@@ -13,8 +13,7 @@ namespace BattleRiteApiExample
         {
             BattleRite battleRite = new BattleRite(new Uri("E:\\Documents\\battlerite_api_key.txt"));
             BattleRiteApi.Matches.MatchCollection matchCollection = battleRite.GetMatchCollection();
-
-            Console.WriteLine(matchCollection.matches[0].attributes.stats.mapID);
+            Console.WriteLine(battleRite.GetSingeMatch(matchCollection.matches[0].id).match.links);
             Console.Read();
         }
     }

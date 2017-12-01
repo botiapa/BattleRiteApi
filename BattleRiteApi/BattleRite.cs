@@ -17,6 +17,7 @@ namespace BattleRiteApi
         private Requester requester;
 
         private const string matchCollectionUrl = "https://api.dc01.gamelockerapp.com/shards/global/matches?page[offset]={0}&page[limit]={1}&sort={2}&filter[createdAt-start]={3}&filter[createdAt-end]={4}"; // The filters don't work for some reason but here they are: &filter[playerNames]={5}&filter[playerIds]={6}&filter[teamNames]={7}&filter[gameMode]={8}
+        private const string singleMatchUrl = "https://api.dc01.gamelockerapp.com/shards/global/matches/{0}";
         #endregion
 
 
@@ -50,6 +51,14 @@ namespace BattleRiteApi
             string requestUrl = String.Format(matchCollectionUrl, pageOffset, pageLimit, sort, filterCreatedAtStart, filterCreatedAtEnd);
             string jsonString = requester.Get(requestUrl);
             var obj = JsonConvert.DeserializeObject<MatchCollection>(jsonString);
+            return obj;
+        }
+
+        public SingleMatch GetSingeMatch(string matchId)
+        {
+            string requestUrl = String.Format(singleMatchUrl, matchId);
+            string jsonString = requester.Get(requestUrl);
+            var obj = JsonConvert.DeserializeObject<SingleMatch>(jsonString);
             return obj;
         }
 
