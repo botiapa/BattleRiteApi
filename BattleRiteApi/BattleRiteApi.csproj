@@ -48,6 +48,7 @@
     <Compile Include="Matches\Match.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Http\Requester.cs" />
+    <Compile Include="Status\Status.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

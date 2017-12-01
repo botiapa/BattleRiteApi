@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using BattleRiteApi.Http;
 using BattleRiteApi.Matches;
+using BattleRiteApi.Status;
 
 namespace BattleRiteApi
 {
@@ -16,6 +17,7 @@ namespace BattleRiteApi
         private string ApiKey;
         private Requester requester;
 
+        private const string apiStatusUrl = "https://api.dc01.gamelockerapp.com/status";
         private const string matchCollectionUrl = "https://api.dc01.gamelockerapp.com/shards/global/matches?page[offset]={0}&page[limit]={1}&sort={2}&filter[createdAt-start]={3}&filter[createdAt-end]={4}"; // The filters don't work for some reason but here they are: &filter[playerNames]={5}&filter[playerIds]={6}&filter[teamNames]={7}&filter[gameMode]={8}
         private const string singleMatchUrl = "https://api.dc01.gamelockerapp.com/shards/global/matches/{0}";
         #endregion
@@ -45,6 +47,15 @@ namespace BattleRiteApi
             // The requester
             requester = new Requester(ApiKey);
         }
+        #region Status
+        public Status.Status GetApiStatus()
+        {
+            string jsonString = requester.Get(apiStatusUrl);
+            var obj = JsonConvert.DeserializeObject<FullStatus>(jsonString);
+            return obj.status;
+        }
+        #endregion
+
         #region Match
         public MatchCollection GetMatchCollection(int pageOffset = 0, int pageLimit = 5, string sort = "createdAt", string filterCreatedAtStart = "Now-28days", string filterCreatedAtEnd = "Now", string filterPlayerNames = "none", string filterPlayerIds = "none", string filterTeamNames = "none", string filterGameMode = "none")
         {
@@ -63,5 +74,7 @@ namespace BattleRiteApi
         }
 
         #endregion
+
+        
     }
 }
