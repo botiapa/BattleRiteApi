@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleRiteApi", "BattleRite
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleRiteApiExample", "BattleRiteApiExample\BattleRiteApiExample.csproj", "{2E16269D-ED8E-42C5-8D02-8F9E1DD5D071}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleRiteApiTests", "BattleRiteApiTests\BattleRiteApiTests.csproj", "{ED9A5712-4165-4A44-898B-E04403C5854D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2E16269D-ED8E-42C5-8D02-8F9E1DD5D071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E16269D-ED8E-42C5-8D02-8F9E1DD5D071}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E16269D-ED8E-42C5-8D02-8F9E1DD5D071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9A5712-4165-4A44-898B-E04403C5854D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9A5712-4165-4A44-898B-E04403C5854D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9A5712-4165-4A44-898B-E04403C5854D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9A5712-4165-4A44-898B-E04403C5854D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
