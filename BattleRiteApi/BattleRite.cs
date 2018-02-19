@@ -48,13 +48,20 @@ namespace BattleRiteApi
             requester = new Requester(ApiKey);
         }
         #region Status
+        /// <summary>
+        /// Get the api status synchronously
+        /// </summary>
+        /// <returns>The status</returns>
         public Status.Status GetApiStatus()
         {
             string jsonString = requester.Get(apiStatusUrl);
             var obj = JsonConvert.DeserializeObject<FullStatus>(jsonString);
             return obj.status;
         }
-
+        /// <summary>
+        /// Get the api status asynchronously
+        /// </summary>
+        /// <returns>The status</returns>
         public async Task<Status.Status> GetApiStatusAsync()
         {
             string jsonString = await requester.GetAsync(apiStatusUrl);
@@ -64,6 +71,10 @@ namespace BattleRiteApi
         #endregion
 
         #region Match
+        /// <summary>
+        /// Gets a collection of matches synchronously
+        /// </summary>
+        /// <returns>The Match Collection</returns>
         public MatchCollection GetMatchCollection(int pageOffset = 0, int pageLimit = 5, string sort = "createdAt", string filterCreatedAtStart = "Now-28days", string filterCreatedAtEnd = "Now", string filterPlayerNames = "none", string filterPlayerIds = "none", string filterTeamNames = "none", string filterGameMode = "none")
         {
             string requestUrl = String.Format(matchCollectionUrl, pageOffset, pageLimit, sort, filterCreatedAtStart, filterCreatedAtEnd);
@@ -72,6 +83,10 @@ namespace BattleRiteApi
             return obj;
         }
 
+        /// <summary>
+        /// Gets a collection of matches asynchronously
+        /// </summary>
+        /// <returns>The Match Collection</returns>
         public async Task<MatchCollection> GetMatchCollectionAsync(int pageOffset = 0, int pageLimit = 5, string sort = "createdAt", string filterCreatedAtStart = "Now-28days", string filterCreatedAtEnd = "Now", string filterPlayerNames = "none", string filterPlayerIds = "none", string filterTeamNames = "none", string filterGameMode = "none")
         {
             string requestUrl = String.Format(matchCollectionUrl, pageOffset, pageLimit, sort, filterCreatedAtStart, filterCreatedAtEnd);
@@ -80,6 +95,10 @@ namespace BattleRiteApi
             return obj;
         }
 
+        /// <summary>
+        /// Gets a single match synchronously
+        /// </summary>
+        /// <returns>The Match</returns>
         public SingleMatch GetSingeMatch(string matchId)
         {
             string requestUrl = String.Format(singleMatchUrl, matchId);
@@ -88,6 +107,10 @@ namespace BattleRiteApi
             return obj;
         }
 
+        /// <summary>
+        /// Gets a single match asynchronously
+        /// </summary>
+        /// <returns>The Match</returns>
         public async Task<SingleMatch> GetSingeMatchAsync(string matchId)
         {
             string requestUrl = String.Format(singleMatchUrl, matchId);
@@ -97,7 +120,5 @@ namespace BattleRiteApi
         }
 
         #endregion
-
-
     }
 }
