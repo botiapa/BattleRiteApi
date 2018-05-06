@@ -1,3 +1,5 @@
+## I tried contacting the API developer team, but I couldn't reach them. So I'll stop developing, until someone replies. It doesn't seem, that the API is in active development. 
+
 # BattleRiteApi
 C# api wrapper for the [battlerite api](http://battlerite-docs.readthedocs.io/en/master/introduction.html).
 
